@@ -7,11 +7,11 @@ import iCalendarPlugin from "@fullcalendar/icalendar";
 import listPlugin from "@fullcalendar/list";
 import { Card } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { EventInfo } from "./utils/types";
-import { TUTORING_EVENTS_SOURCES } from "./utils/events";
+import { EventInfo } from "../utils/types";
+import { TEACHING_EVENTS_SOURCES } from "../utils/events";
 import { Dialog, DialogTitle, DialogContent } from "@/components/ui/dialog";
 
-export default function Home() {
+export default function Teaching() {
   const [eventInfo, setEventInfo] = useState<EventInfo>({});
   const [selected, setSelected] = useState(new Set<string>());
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <Card className="w-full h-full flex flex-col items-start justify-center gap-4 rounded-2xl p-8">
       <ToggleGroup type="multiple" onValueChange={handleValueChange}>
-        {TUTORING_EVENTS_SOURCES.map((source) => (
+        {TEACHING_EVENTS_SOURCES.map((source) => (
           <ToggleGroupItem
             variant="outline"
             key={source.id}
@@ -36,22 +36,9 @@ export default function Home() {
         ))}
       </ToggleGroup>
       <div className="hidden sm:block">
-        <Dialog
-          modal={false}
-          open={isDialogOpen}
-          onOpenChange={setIsDialogOpen}
-        >
-          <DialogContent className="bg-card w-auto p-10">
-            <DialogTitle>{eventInfo.title}</DialogTitle>
-            <p>
-              {eventInfo.startISO} - {eventInfo.endISO}
-            </p>
-            <p>{eventInfo.description}</p>
-          </DialogContent>
-        </Dialog>
         <FullCalendar
           plugins={[timeGridPlugin, dayGridPlugin, iCalendarPlugin]}
-          eventSources={TUTORING_EVENTS_SOURCES.filter(
+          eventSources={TEACHING_EVENTS_SOURCES.filter(
             (source) => selected.has(source.id) || selected.size === 0
           )}
           nowIndicator={true}
@@ -73,10 +60,23 @@ export default function Home() {
         />
       </div>
       <div className="w-full sm:hidden">
+        <Dialog
+          modal={false}
+          open={isDialogOpen}
+          onOpenChange={setIsDialogOpen}
+        >
+          <DialogContent className="bg-card w-auto p-10">
+            <DialogTitle>{eventInfo.title}</DialogTitle>
+            <p>
+              {eventInfo.startISO} - {eventInfo.endISO}
+            </p>
+            <p>{eventInfo.description}</p>
+          </DialogContent>
+        </Dialog>
         <FullCalendar
           plugins={[listPlugin, iCalendarPlugin]}
           initialView="listWeek"
-          eventSources={TUTORING_EVENTS_SOURCES.filter(
+          eventSources={TEACHING_EVENTS_SOURCES.filter(
             (source) => selected.has(source.id) || selected.size === 0
           )}
           contentHeight="auto"
