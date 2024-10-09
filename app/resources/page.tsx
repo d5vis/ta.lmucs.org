@@ -9,9 +9,7 @@ import {
 const RESOURCE_DOCUMENT_ID = "1PkUHhsyFGwRSkPc7IIz5VpnajxFUeePNDSOxLczobqk";
 
 export default function Resources() {
-  const [isPortrait, setIsPortrait] = useState(
-    window.innerHeight > window.innerWidth
-  );
+  const [isPortrait, setIsPortrait] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {

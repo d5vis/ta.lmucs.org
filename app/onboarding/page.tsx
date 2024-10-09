@@ -9,9 +9,7 @@ import {
 const ONBOARDING_DOCUMENT_ID = "1uiprF7N49pAyzSHeN2AH3sPbYM2vB5Iu_VhcSLcmMTE";
 
 export default function Onboarding() {
-  const [isPortrait, setIsPortrait] = useState(
-    window.innerHeight > window.innerWidth
-  );
+  const [isPortrait, setIsPortrait] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
