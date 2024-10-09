@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -35,7 +36,11 @@ export default function Teaching() {
           </ToggleGroupItem>
         ))}
       </ToggleGroup>
-      <div className="hidden sm:block">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="hidden sm:block"
+      >
         <FullCalendar
           plugins={[timeGridPlugin, dayGridPlugin, iCalendarPlugin]}
           eventSources={TEACHING_EVENTS_SOURCES.filter(
@@ -58,7 +63,7 @@ export default function Teaching() {
             setIsDialogOpen(true);
           }}
         />
-      </div>
+      </motion.div>
       <div className="w-full sm:hidden">
         <Dialog
           modal={false}
