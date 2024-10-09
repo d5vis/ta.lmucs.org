@@ -34,7 +34,8 @@ export default function RootLayout({
         <Header />
         <main className="flex-grow">{children}</main>
         <footer className="mt-auto">
-          made with 🩵 at loyola marymount university
+          made with <span className="text-lmucrimson">&lt;3</span> at loyola
+          marymount university
         </footer>
       </body>
     </html>
