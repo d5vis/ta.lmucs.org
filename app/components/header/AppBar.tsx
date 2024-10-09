@@ -237,7 +237,12 @@ const AppBar = () => {
         {NAV_LIST_BUTTONS.map((button) => {
           const selected = button.href === pathname;
           return (
-            <Button key={button.label} variant="ghost" className="rounded-xl">
+            <Button
+              key={button.label}
+              variant="ghost"
+              className="rounded-xl"
+              asChild
+            >
               <Link
                 href={button.href}
                 className={`${selected ? "underline underline-offset-4" : ""}`}
@@ -259,15 +264,19 @@ const AppBar = () => {
                 <NavigationMenuContent className="font-[family-name:var(--font-metric-regular)]">
                   <ul className="w-[300px]">
                     {button.children.map((child) => (
-                      <li key={child.label} className="flex p-2">
+                      <li key={child.label} className="p-2">
                         <NavigationMenuLink asChild>
-                          <Button variant="ghost" className="w-full rounded-xl">
+                          <Button
+                            variant="ghost"
+                            className="w-full rounded-xl"
+                            asChild
+                          >
                             <Link
                               href={child.href}
-                              className="flex gap-2 text-left w-full"
+                              className="flex items-center gap-2 text-left w-full"
                             >
                               {child.icon}
-                              {child.label}
+                              <span className="flex-1">{child.label}</span>
                             </Link>
                           </Button>
                         </NavigationMenuLink>
