@@ -29,7 +29,7 @@ export default function Home() {
             key={source.id}
             value={source.id}
             className="rounded-2xl"
-            style={{ borderColor: source.color }}
+            style={{ color: source.color, borderColor: source.color }}
           >
             {source.id}
           </ToggleGroupItem>

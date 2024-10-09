@@ -50,6 +50,8 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        lmublue: "hsl(var(--lmublue))",
+        lmucrimson: "hsl(var(--lmucrimson))",
       },
       borderRadius: {
         lg: "var(--radius)",

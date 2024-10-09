@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/separator";
 export default function FAQ() {
   return (
     <Card className="w-full h-full text-left gap-4 rounded-2xl p-8">
-      <h2 className="text-xl font-[family-name:var(--font-metric-bold)]">
+      <h2 className="text-xl text-lmublue font-[family-name:var(--font-metric-bold)]">
         Tips from the CS Professors
       </h2>
       <div>
@@ -17,7 +17,7 @@ export default function FAQ() {
         </ul>
       </div>
       <Separator className="mt-4 mb-4" />
-      <h2 className="text-xl font-[family-name:var(--font-metric-bold)]">
+      <h2 className="text-xl text-lmublue font-[family-name:var(--font-metric-bold)]">
         Can I only contact the TA who grades for the class I have a question
         about?
       </h2>
@@ -29,7 +29,7 @@ export default function FAQ() {
         </ul>
       </div>
       <Separator className="mt-4 mb-4" />
-      <h2 className="text-xl font-[family-name:var(--font-metric-bold)]">
+      <h2 className="text-xl text-lmublue font-[family-name:var(--font-metric-bold)]">
         When should I contact my professor vs. a TA?
       </h2>
       <div>
@@ -51,7 +51,7 @@ export default function FAQ() {
         </ul>
       </div>
       <Separator className="mt-4 mb-4" />
-      <h2 className="text-xl font-[family-name:var(--font-metric-bold)]">
+      <h2 className="text-xl text-lmublue font-[family-name:var(--font-metric-bold)]">
         If I have further questions, where can I go?
       </h2>
       <div>
