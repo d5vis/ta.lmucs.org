@@ -23,6 +23,7 @@ export default function Onboarding() {
         height: window.innerHeight * 0.73,
       });
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
