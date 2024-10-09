@@ -72,12 +72,12 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --fc-button-bg-color: #0076a5;
-    --fc-button-hover-bg-color: #005c83;
-    --fc-button-active-bg-color: #004c6d;
+    --fc-button-bg-color: hsl(var(--lmublue));
+    --fc-button-hover-bg-color: hsl(var(--lmublue) / 0.8);
+    --fc-button-active-bg-color: hsl(var(--lmublue) / 0.6);
     --fc-button-border-color: hsla(var(--border));
-    --fc-list-event-hover-bg-color: black;
-    --fc-neutral-bg-color: #0076a5;
+    --fc-list-event-hover-bg-color: hsl(var(--background));
+    --fc-neutral-bg-color: hsl(var(--lmublue));
   }
 }
 
