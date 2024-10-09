@@ -2,6 +2,7 @@
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function FAQ() {
   return (
@@ -14,9 +15,12 @@ export default function FAQ() {
           <ul className="list-disc list-inside">
             <li>
               The professors wrote{" "}
-              <a href="https://lmucs.github.io/resources/resources.html">
+              <Link
+                href="https://lmucs.github.io/resources/resources.html"
+                className="text-lmublue"
+              >
                 this!
-              </a>{" "}
+              </Link>{" "}
               Really! Read it! It will help!
             </li>
           </ul>
