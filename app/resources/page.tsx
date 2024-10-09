@@ -10,10 +10,18 @@ const RESOURCE_DOCUMENT_ID = "1PkUHhsyFGwRSkPc7IIz5VpnajxFUeePNDSOxLczobqk";
 
 export default function Resources() {
   const [isPortrait, setIsPortrait] = useState(false);
+  const [iframeDimensions, setIframeDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
     const handleResize = () => {
       setIsPortrait(window.innerHeight > window.innerWidth);
+      setIframeDimensions({
+        width: window.innerWidth * 0.75,
+        height: window.innerHeight * 0.73,
+      });
     };
     window.addEventListener("resize", handleResize);
     return () => {
@@ -33,8 +41,8 @@ export default function Resources() {
         className="dark:invert dark:hue-rotate-180 dark:brightness-[0.9]"
         src={generateGoogleDocsEmbedUrl(RESOURCE_DOCUMENT_ID)}
         title="Onboarding"
-        width={window.innerWidth * 0.75}
-        height={window.innerHeight * 0.73}
+        width={iframeDimensions.width}
+        height={iframeDimensions.height}
         style={{ border: "0" }}
       ></iframe>
     </Card>

@@ -10,10 +10,18 @@ const ONBOARDING_DOCUMENT_ID = "1uiprF7N49pAyzSHeN2AH3sPbYM2vB5Iu_VhcSLcmMTE";
 
 export default function Onboarding() {
   const [isPortrait, setIsPortrait] = useState(false);
+  const [iframeDimensions, setIframeDimensions] = useState({
+    width: 0,
+    height: 0,
+  });
 
   useEffect(() => {
     const handleResize = () => {
       setIsPortrait(window.innerHeight > window.innerWidth);
+      setIframeDimensions({
+        width: window.innerWidth * 0.75,
+        height: window.innerHeight * 0.73,
+      });
     };
     window.addEventListener("resize", handleResize);
     return () => {
@@ -33,8 +41,8 @@ export default function Onboarding() {
         className="dark:invert dark:hue-rotate-180 dark:brightness-[0.9]"
         src={generateGoogleDocsEmbedUrl(ONBOARDING_DOCUMENT_ID)}
         title="Onboarding"
-        width={window.innerWidth * 0.75}
-        height={window.innerHeight * 0.73}
+        width={iframeDimensions.width}
+        height={iframeDimensions.height}
         style={{ border: "0" }}
       ></iframe>
     </Card>
