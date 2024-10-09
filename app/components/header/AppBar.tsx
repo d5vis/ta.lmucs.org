@@ -24,7 +24,7 @@ const NAV_LIST_BUTTONS = [
 
 const NAV_MENU_BUTTONS = [
   {
-    label: "Schedules",
+    label: "Calendars",
     children: [
       {
         icon: (
@@ -184,7 +184,7 @@ const AppBar = () => {
   const pathname = usePathname();
 
   return (
-    <Card className="flex pt-2 pb-2 pl-4 pr-4 rounded-2xl gap-4">
+    <Card className="flex rounded-2xl p-2">
       <nav className="hidden md:flex">
         {NAV_LIST_BUTTONS.map((button) => {
           const selected = button.href === pathname;
@@ -205,14 +205,14 @@ const AppBar = () => {
         <NavigationMenu>
           <NavigationMenuList>
             {NAV_MENU_BUTTONS.map((button) => (
-              <NavigationMenuItem>
+              <NavigationMenuItem key={button.label}>
                 <NavigationMenuTrigger className="bg-surface">
                   {button.label}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="font-[family-name:var(--font-metric-regular)]">
                   {button.children.map((child) => (
                     <ul className="w-[300px]">
-                      <li className="flex p-2">
+                      <li key={child.label} className="flex p-2">
                         <NavigationMenuLink asChild>
                           <Button variant="ghost" className="w-full rounded-xl">
                             <Link
