@@ -42,9 +42,13 @@ export default function Home() {
           onOpenChange={setIsDialogOpen}
         >
           <DialogContent className="bg-card w-auto p-10">
-            <DialogTitle>{eventInfo.title}</DialogTitle>
+            <DialogTitle className="text-lmublue">
+              {eventInfo.title}
+            </DialogTitle>
             <p>
-              {eventInfo.startISO} - {eventInfo.endISO}
+              <b>
+                {eventInfo.startISO} - {eventInfo.endISO}
+              </b>
             </p>
             <p>{eventInfo.description}</p>
           </DialogContent>
