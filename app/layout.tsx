@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
+import DarkModeProvider from "./components/DarkModeProvider";
 import Header from "./components/header/Header";
 
 const metricRegular = localFont({
@@ -28,9 +29,36 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: light)"
+          content="#f5f5f5"
+        />
+        <meta
+          name="theme-color"
+          media="(prefers-color-scheme: dark)"
+          content="#171412"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (prefersDarkMode) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${metricRegular.variable} ${metricBold.variable} antialiased font-[family-name:var(--font-metric-regular)] flex flex-col min-h-screen text-center p-4 gap-4`}
       >
+        <DarkModeProvider />
         <Header />
         <main className="flex-grow">{children}</main>
         <footer className="mt-auto">
