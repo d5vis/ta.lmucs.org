@@ -39,7 +39,7 @@ export default function Onboarding() {
   return (
     <Card className="w-full h-full flex flex-col items-center justify-center gap-4 rounded-2xl p-8">
       <iframe
-        className="dark:invert dark:hue-rotate-180 dark:brightness-[0.9]"
+        className="dark:invert dark:hue-rotate-[170deg] dark:brightness-[0.88] dark:saturate-[0.5]"
         src={generateGoogleDocsEmbedUrl(ONBOARDING_DOCUMENT_ID)}
         title="Onboarding"
         width={iframeDimensions.width}

@@ -41,14 +41,18 @@ body {
     --chart-5: 27 87% 67%;
     --lmublue: 197 100% 32%;
     --lmucrimson: 347 87% 36%;
+    --fc-button-bg-color: hsla(var(--lmublue));
+    --fc-button-hover-bg-color: #005c83;
+    --fc-button-active-bg-color: #004c6d;
+    --fc-button-border-color: hsla(var(--border));
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
+    --background: 20 14.3% 8.1%;
     --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
+    --card: 24 5.8% 12%;
     --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
+    --popover: 24 9.8% 15%;
     --popover-foreground: 0 0% 95%;
     --primary: 346.8 77.2% 49.8%;
     --primary-foreground: 355.7 100% 97.3%;
@@ -68,6 +72,12 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --fc-button-bg-color: #0076a5;
+    --fc-button-hover-bg-color: #005c83;
+    --fc-button-active-bg-color: #004c6d;
+    --fc-button-border-color: hsla(var(--border));
+    --fc-list-event-hover-bg-color: black;
+    --fc-neutral-bg-color: #0076a5;
   }
 }
 
