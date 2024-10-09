@@ -262,7 +262,7 @@ const AppBar = () => {
                   {button.icon}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="font-[family-name:var(--font-metric-regular)]">
-                  <ul className="w-[300px]">
+                  <ul className="w-[224px]">
                     {button.children.map((child) => (
                       <li key={child.label} className="p-2">
                         <NavigationMenuLink asChild>
