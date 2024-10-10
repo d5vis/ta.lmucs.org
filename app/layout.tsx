@@ -5,6 +5,7 @@ import "./globals.css";
 
 import DarkModeProvider from "./components/DarkModeProvider";
 import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 const metricRegular = localFont({
   src: "./fonts/Metric-Regular.otf",
@@ -63,10 +64,7 @@ export default function RootLayout({
         <DarkModeProvider />
         <Header />
         <main className="flex-grow">{children}</main>
-        <footer className="mt-auto">
-          made with <span className="text-lmucrimson">&lt;3</span> at loyola
-          marymount university
-        </footer>
+        <Footer />
       </body>
     </html>
   );
