@@ -18,6 +18,7 @@ const NAV_LIST_BUTTONS = [
   { label: "FAQ", href: "/faq" },
   { label: "Resources", href: "/resources" },
   { label: "Onboarding", href: "/onboarding" },
+  { label: "Print", href: "/print" },
   { label: "Linktree", href: "https://linktr.ee/lmucs" },
   { label: "Slack", href: "https://lmucs.slack.com/" },
 ];
