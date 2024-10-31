@@ -13,6 +13,7 @@ import { Dialog, DialogTitle, DialogContent } from "@/components/ui/dialog";
 
 interface CalendarProps {
   eventSources: { url: string; format: string; color: string; id: string }[];
+  hiddenDays?: number[];
 }
 
 export default function Calendar(props: CalendarProps) {
@@ -69,6 +70,7 @@ export default function Calendar(props: CalendarProps) {
           nowIndicator={true}
           slotMinTime="08:00:00"
           slotMaxTime="22:00:00"
+          hiddenDays={props.hiddenDays}
           contentHeight="auto"
           eventClick={(info) => {
             const details: EventInfo = {
