@@ -1,8 +1,8 @@
-"use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,27 +10,31 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+} from '@/components/ui/navigation-menu'
 
 const NAV_LIST_BUTTONS = [
-  { label: "TA", href: "/" },
-  { label: "Teaching", href: "/teaching" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Resources", href: "/resources" },
-  { label: "Onboarding", href: "/onboarding" },
-  { label: "Printing", href: "/print" },
-  { label: "Linktree", href: "https://linktr.ee/lmucs" },
-  { label: "Slack", href: "https://lmucs.slack.com/" },
+  { label: 'TA', href: '/' },
+  { label: 'Teaching', href: '/teaching' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Resources', href: '/resources' },
+  { label: 'Onboarding', href: '/onboarding' },
+  { label: 'Printing', href: '/print' },
+  { label: 'Linktree', href: 'https://linktr.ee/lmucs', target: '_blank' },
   {
-    label: "Faculty",
-    href: "https://docs.google.com/presentation/d/e/2PACX-1vTdyFvGRqePNnh7nR4xhPoj1M95dK-fObFws4riRT3lGSzR3T4PGrqnKKbiL0LE9XEiwQEBlq7tWQR3/pub",
-    target: "_blank",
+    label: 'Slack',
+    href: 'https://lmucs.slack.com/',
+    target: '_blank',
   },
-];
+  {
+    label: 'Faculty',
+    href: 'https://docs.google.com/presentation/d/e/2PACX-1vTdyFvGRqePNnh7nR4xhPoj1M95dK-fObFws4riRT3lGSzR3T4PGrqnKKbiL0LE9XEiwQEBlq7tWQR3/pub',
+    target: '_blank',
+  },
+]
 
 const NAV_MENU_BUTTONS = [
   {
-    label: "Calendars",
+    label: 'Calendars',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -65,8 +69,8 @@ const NAV_MENU_BUTTONS = [
             />
           </svg>
         ),
-        label: "TA Schedule",
-        href: "/",
+        label: 'TA Schedule',
+        href: '/',
       },
       {
         icon: (
@@ -85,13 +89,13 @@ const NAV_MENU_BUTTONS = [
             />
           </svg>
         ),
-        label: "Teaching Schedule",
-        href: "/teaching",
+        label: 'Teaching Schedule',
+        href: '/teaching',
       },
     ],
   },
   {
-    label: "Resources",
+    label: 'Resources',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -126,8 +130,8 @@ const NAV_MENU_BUTTONS = [
             />
           </svg>
         ),
-        label: "FAQ",
-        href: "/faq",
+        label: 'FAQ',
+        href: '/faq',
       },
       {
         icon: (
@@ -146,8 +150,8 @@ const NAV_MENU_BUTTONS = [
             />
           </svg>
         ),
-        label: "General Resources",
-        href: "/resources",
+        label: 'General Resources',
+        href: '/resources',
       },
       {
         icon: (
@@ -166,13 +170,13 @@ const NAV_MENU_BUTTONS = [
             />
           </svg>
         ),
-        label: "Onboarding",
-        href: "/onboarding",
+        label: 'Onboarding',
+        href: '/onboarding',
       },
     ],
   },
   {
-    label: "Links",
+    label: 'Links',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -207,8 +211,8 @@ const NAV_MENU_BUTTONS = [
             />
           </svg>
         ),
-        label: "Linktree",
-        href: "https://linktr.ee/lmucs",
+        label: 'Linktree',
+        href: 'https://linktr.ee/lmucs',
       },
       {
         icon: (
@@ -227,21 +231,21 @@ const NAV_MENU_BUTTONS = [
             />
           </svg>
         ),
-        label: "Slack",
-        href: "https://lmucs.slack.com/",
+        label: 'Slack',
+        href: 'https://lmucs.slack.com/',
       },
     ],
   },
-];
+]
 
 const AppBar = () => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return (
     <Card className="flex rounded-2xl p-2">
       <nav className="hidden md:flex">
-        {NAV_LIST_BUTTONS.map((button) => {
-          const selected = button.href === pathname;
+        {NAV_LIST_BUTTONS.map(button => {
+          const selected = button.href === pathname
           return (
             <Button
               key={button.label}
@@ -251,25 +255,26 @@ const AppBar = () => {
             >
               <Link
                 href={button.href}
-                className={`${selected ? "underline underline-offset-4" : ""}`}
+                className={`${selected ? 'underline underline-offset-4' : ''}`}
+                target={button.target}
               >
                 {button.label}
               </Link>
             </Button>
-          );
+          )
         })}
       </nav>
       <nav className="flex md:hidden">
         <NavigationMenu>
           <NavigationMenuList>
-            {NAV_MENU_BUTTONS.map((button) => (
+            {NAV_MENU_BUTTONS.map(button => (
               <NavigationMenuItem key={button.label}>
                 <NavigationMenuTrigger className="bg-surface">
                   {button.icon}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="font-[family-name:var(--font-metric-regular)]">
                   <ul className="w-[224px]">
-                    {button.children.map((child) => (
+                    {button.children.map(child => (
                       <li key={child.label} className="p-2">
                         <NavigationMenuLink asChild>
                           <Button
@@ -296,7 +301,7 @@ const AppBar = () => {
         </NavigationMenu>
       </nav>
     </Card>
-  );
-};
+  )
+}
 
-export default AppBar;
+export default AppBar

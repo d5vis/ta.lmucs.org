@@ -1,33 +1,33 @@
-import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/react";
-import localFont from "next/font/local";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
+import localFont from 'next/font/local'
+import './globals.css'
 
-import DarkModeProvider from "./components/DarkModeProvider";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import DarkModeProvider from './components/DarkModeProvider'
+import Header from './components/header/Header'
+import Footer from './components/footer/Footer'
 
 const metricRegular = localFont({
-  src: "./fonts/Metric-Regular.otf",
-  variable: "--font-metric-regular",
-  weight: "400",
-});
+  src: './fonts/Metric-Regular.otf',
+  variable: '--font-metric-regular',
+  weight: '400',
+})
 
 const metricBold = localFont({
-  src: "./fonts/Metric-Bold.otf",
-  variable: "--font-metric-bold",
-  weight: "700",
-});
+  src: './fonts/Metric-Bold.otf',
+  variable: '--font-metric-bold',
+  weight: '700',
+})
 
 export const metadata: Metadata = {
-  title: "LMUCS",
-  description: "LMU Computer Science",
-};
+  title: 'LMUCS',
+  description: 'LMU Computer Science',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -67,5 +67,5 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
-  );
+  )
 }

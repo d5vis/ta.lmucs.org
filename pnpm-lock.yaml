@@ -23,6 +23,9 @@ dependencies:
   '@fullcalendar/timegrid':
     specifier: ^6.1.15
     version: 6.1.15(@fullcalendar/core@6.1.15)
+  '@next/font':
+    specifier: ^14.2.15
+    version: 14.2.15(next@15.0.3)
   '@radix-ui/react-dialog':
     specifier: ^1.1.2
     version: 1.1.2(@types/react-dom@18.3.1)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
@@ -529,6 +532,14 @@ packages:
     dependencies:
       fast-glob: 3.3.1
     dev: true
+
+  /@next/font@14.2.15(next@15.0.3):
+    resolution: {integrity: sha512-QopYhBmCDDrNDynbi+ZD1hDZXmQXVFo7TmAFp4DQgO/kogz1OLbQ92hPigJbj572eZ3GaaVxNIyYVn3/eAsehg==}
+    peerDependencies:
+      next: '*'
+    dependencies:
+      next: 15.0.3(react-dom@18.3.1)(react@18.3.1)
+    dev: false
 
   /@next/swc-darwin-arm64@15.0.3:
     resolution: {integrity: sha512-s3Q/NOorCsLYdCKvQlWU+a+GeAd3C8Rb3L1YnetsgwXzhc3UTWrtQpB/3eCjFOdGUj5QmXfRak12uocd1ZiiQw==}
