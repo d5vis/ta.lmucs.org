@@ -13,8 +13,13 @@ import {
 } from '@/components/ui/navigation-menu'
 
 const NAV_LIST_BUTTONS = [
-  { label: 'TA', href: '/' },
+  { label: 'Tutors', href: '/' },
   { label: 'Teaching', href: '/teaching' },
+  {
+    label: 'Real-time Display',
+    href: 'https://tutor.lmucs.org/list',
+    target: '_blank',
+  },
   { label: 'FAQ', href: '/faq' },
   { label: 'Resources', href: '/resources' },
   { label: 'Onboarding', href: '/onboarding' },
