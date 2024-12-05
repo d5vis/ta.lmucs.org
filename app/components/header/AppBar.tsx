@@ -85,8 +85,8 @@ const NAV_MENU_BUTTONS = [
       },
       {
         icon: <DocumentIcon />,
-        label: 'Onboarding',
-        href: '/onboarding',
+        label: 'Printing',
+        href: '/print',
       },
     ],
   },
