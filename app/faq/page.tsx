@@ -1,8 +1,8 @@
-"use client";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { motion } from "framer-motion";
-import Link from "next/link";
+'use client'
+import { Card } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 export default function FAQ() {
   return (
@@ -14,13 +14,13 @@ export default function FAQ() {
         <div>
           <ul className="list-disc list-inside">
             <li>
-              The professors wrote{" "}
+              The professors wrote{' '}
               <Link
                 href="https://lmucs.github.io/resources/resources.html"
-                className="text-lmublue"
+                className="text-lmublue hover:underline"
               >
                 this!
-              </Link>{" "}
+              </Link>{' '}
               Really! Read it! It will help!
             </li>
           </ul>
@@ -77,5 +77,5 @@ export default function FAQ() {
         </div>
       </motion.div>
     </Card>
-  );
+  )
 }

@@ -113,7 +113,7 @@ const AppBar = () => {
 
   return (
     <Card className="flex rounded-2xl p-2">
-      <nav className="hidden md:flex">
+      <nav className="hidden lg:flex">
         {NAV_LIST_BUTTONS.map(button => {
           const selected = button.href === pathname
           return (
@@ -125,7 +125,11 @@ const AppBar = () => {
             >
               <Link
                 href={button.href}
-                className={`${selected ? 'underline underline-offset-4' : ''}`}
+                className={`${
+                  selected
+                    ? 'underline decoration-lmublue underline-offset-4'
+                    : ''
+                }`}
                 target={button.target}
               >
                 {button.label}
@@ -134,7 +138,7 @@ const AppBar = () => {
           )
         })}
       </nav>
-      <nav className="flex md:hidden">
+      <nav className="flex lg:hidden">
         <NavigationMenu>
           <NavigationMenuList>
             {NAV_MENU_BUTTONS.map(button => (

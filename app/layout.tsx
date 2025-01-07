@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta
+        {/* <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
           content="#f5f5f5"
@@ -55,13 +55,13 @@ export default function RootLayout({
               })();
             `,
           }}
-        />
+        /> */}
       </head>
       <body
         className={`${metricRegular.variable} ${metricBold.variable} antialiased font-[family-name:var(--font-metric-regular)] flex flex-col min-h-screen text-center p-4 gap-4`}
       >
         <Analytics />
-        <DarkModeProvider />
+        {/* <DarkModeProvider /> */}
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
