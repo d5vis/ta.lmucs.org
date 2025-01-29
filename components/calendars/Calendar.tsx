@@ -10,6 +10,8 @@ import { EventInfo } from '@/app/utils/types'
 import { Dialog, DialogTitle, DialogContent } from '@/components/ui/dialog'
 import { CheckIcon } from '../icons/CheckIcon'
 
+import './calendar.css'
+
 interface CalendarProps {
   title: string
   eventSources: { url: string; format: string; color: string; id: string }[]

@@ -6,20 +6,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-a.fc-timegrid-event {
-  border-radius: 12px;
-  padding: 4px;
-}
-
-.fc-event-selected:after,
-.fc-event:focus:after {
-  border-radius: 12px;
-}
-
-.fc .fc-button {
-  border-radius: 12px;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -55,12 +41,6 @@ a.fc-timegrid-event {
     --chart-5: 27 87% 67%;
     --lmublue: 197 100% 32%;
     --lmucrimson: 347 87% 36%;
-    --fc-button-bg-color: hsla(var(--lmublue));
-    --fc-button-hover-bg-color: #005c83;
-    --fc-button-active-bg-color: #004c6d;
-    --fc-button-border-color: hsla(var(--border));
-    --fc-button-hover-border-color: hsla(var(--border));
-    --fc-button-active-border-color: hsla(var(--border));
   }
 
   .dark {
@@ -88,12 +68,6 @@ a.fc-timegrid-event {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --fc-button-bg-color: hsl(var(--lmublue));
-    --fc-button-hover-bg-color: hsl(var(--lmublue) / 0.8);
-    --fc-button-active-bg-color: hsl(var(--lmublue) / 0.6);
-    --fc-button-border-color: hsla(var(--border));
-    --fc-list-event-hover-bg-color: hsl(var(--background));
-    --fc-neutral-bg-color: hsl(var(--lmublue));
   }
 }
 

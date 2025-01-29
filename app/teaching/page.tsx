@@ -1,5 +1,5 @@
-import { TEACHING_EVENTS_SOURCES } from '../utils/events'
-import Calendar from '../components/calendars/Calendar'
+import { TEACHING_EVENTS_SOURCES } from '@/app/utils/events'
+import Calendar from '@/components/calendars/Calendar'
 
 export default function Teaching() {
   return (

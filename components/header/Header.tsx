@@ -1,7 +1,7 @@
 import Logo from './Logo'
 import AppBar from './AppBar'
+import Banner from './Banner'
 
-// const BANNER_CONTENT = ''
 const BANNER_CONTENT = (
   <div>
     LMUHacks 2025 is happening on March 15th! {''}
@@ -22,11 +22,7 @@ const Header = () => {
         <Logo />
         <AppBar />
       </div>
-      {BANNER_CONTENT && (
-        <div className="z-40 motion-preset-slide-down motion-delay-200 z-40 w-full bg-lmublue text-white p-1 text-sm">
-          {BANNER_CONTENT}
-        </div>
-      )}
+      {BANNER_CONTENT && <Banner body={BANNER_CONTENT} />}
     </div>
   )
 }

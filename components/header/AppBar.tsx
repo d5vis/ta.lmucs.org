@@ -10,11 +10,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
-import { QuestionIcon } from '../icons/QuestionIcon'
-import { DocumentIcon } from '../icons/DocumentIcon'
-import { LinkIcon } from '../icons/LinkIcon'
-import { PeopleIcon } from '../icons/PeopleIcon'
-import { CalendarIcon } from '../icons/CalendarIcon'
+import { QuestionIcon } from '@/components/icons/QuestionIcon'
+import { DocumentIcon } from '@/components/icons/DocumentIcon'
+import { LinkIcon } from '@/components/icons/LinkIcon'
+import { PeopleIcon } from '@/components/icons/PeopleIcon'
+import { CalendarIcon } from '@/components/icons/CalendarIcon'
 
 const NAV_LIST_BUTTONS = [
   { label: 'Tutors', href: '/' },

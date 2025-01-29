@@ -3,9 +3,9 @@ import { Analytics } from '@vercel/analytics/react'
 import localFont from 'next/font/local'
 import './globals.css'
 
-import DarkModeProvider from './components/DarkModeProvider'
-import Header from './components/header/Header'
-import Footer from './components/footer/Footer'
+import DarkModeProvider from '@/components/DarkModeProvider'
+import Header from '../components/header/Header'
+import Footer from '../components/footer/Footer'
 
 const metricRegular = localFont({
   src: './fonts/Metric-Regular.otf',
