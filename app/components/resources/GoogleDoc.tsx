@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { Card } from '@/components/ui/card'
 import {
   generateGoogleDocsEmbedUrl,
   generateGoogleDocsUrl,
@@ -40,14 +39,17 @@ export default function GoogleDoc(props: GoogleDocProps) {
   }, [isPortrait, props.documentId])
 
   return (
-    <Card className="w-full h-full flex flex-col items-center justify-center gap-4 rounded-2xl p-8">
+    <div className="motion-blur-in w-full h-full flex flex-col lg:flex-row items-start justify-center gap-6 px-8 py-6">
+      <h1 className="text-left text-5xl w-full md:max-w-64 text-lmublue font-[family-name:var(--font-metric-bold)]">
+        {props.title}
+      </h1>
       <iframe
-        className="dark:invert dark:hue-rotate-[170deg] dark:brightness-[0.88] dark:saturate-[0.5] border border-dashed border-border dark:border-gray-300 rounded-xl"
+        className="dark:invert dark:hue-rotate-[170deg] dark:brightness-[0.88] dark:saturate-[0.5] w-full border border-dashed border-border dark:border-gray-300 bg-white rounded-2xl"
         src={generateGoogleDocsEmbedUrl(props.documentId)}
         title={props.title}
         width={iframeDimensions.width}
         height={iframeDimensions.height}
       ></iframe>
-    </Card>
+    </div>
   )
 }

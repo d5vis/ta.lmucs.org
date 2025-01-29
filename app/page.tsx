@@ -2,5 +2,11 @@ import { TUTORING_EVENTS_SOURCES } from './utils/events'
 import Calendar from './components/calendars/Calendar'
 
 export default function Home() {
-  return <Calendar eventSources={TUTORING_EVENTS_SOURCES} hiddenDays={[0, 6]} />
+  return (
+    <Calendar
+      title="Tutoring"
+      eventSources={TUTORING_EVENTS_SOURCES}
+      hiddenDays={[0, 6]}
+    />
+  )
 }

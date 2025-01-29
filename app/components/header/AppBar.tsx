@@ -2,7 +2,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -112,7 +111,7 @@ const AppBar = () => {
   const pathname = usePathname()
 
   return (
-    <Card className="flex rounded-2xl p-2">
+    <div className="flex rounded-2xl py-2 justify-end">
       <nav className="hidden lg:flex">
         {NAV_LIST_BUTTONS.map(button => {
           const selected = button.href === pathname
@@ -120,14 +119,14 @@ const AppBar = () => {
             <Button
               key={button.label}
               variant="ghost"
-              className="rounded-xl"
+              className="text-md rounded-xl"
               asChild
             >
               <Link
                 href={button.href}
                 className={`${
                   selected
-                    ? 'underline decoration-lmublue underline-offset-4'
+                    ? 'underline decoration-lmublue decoration-2 underline-offset-4'
                     : ''
                 }`}
                 target={button.target}
@@ -143,10 +142,10 @@ const AppBar = () => {
           <NavigationMenuList>
             {NAV_MENU_BUTTONS.map(button => (
               <NavigationMenuItem key={button.label}>
-                <NavigationMenuTrigger className="bg-surface">
+                <NavigationMenuTrigger className="bg-background">
                   {button.icon}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="font-[family-name:var(--font-metric-regular)]">
+                <NavigationMenuContent className="bg-background font-[family-name:var(--font-metric-regular)]">
                   <ul className="w-[224px]">
                     {button.children.map(child => (
                       <li key={child.label} className="p-2">
@@ -174,7 +173,7 @@ const AppBar = () => {
           </NavigationMenuList>
         </NavigationMenu>
       </nav>
-    </Card>
+    </div>
   )
 }
 

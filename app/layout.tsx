@@ -58,7 +58,7 @@ export default function RootLayout({
         /> */}
       </head>
       <body
-        className={`${metricRegular.variable} ${metricBold.variable} antialiased font-[family-name:var(--font-metric-regular)] flex flex-col min-h-screen text-center p-4 gap-4`}
+        className={`${metricRegular.variable} ${metricBold.variable} antialiased font-[family-name:var(--font-metric-regular)] flex flex-col min-h-screen text-center`}
       >
         <Analytics />
         {/* <DarkModeProvider /> */}

@@ -5,12 +5,13 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import iCalendarPlugin from '@fullcalendar/icalendar'
 import listPlugin from '@fullcalendar/list'
-import { Card } from '@/components/ui/card'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { EventInfo } from '@/app/utils/types'
 import { Dialog, DialogTitle, DialogContent } from '@/components/ui/dialog'
+import { CheckIcon } from '../icons/CheckIcon'
 
 interface CalendarProps {
+  title: string
   eventSources: { url: string; format: string; color: string; id: string }[]
   hiddenDays?: number[]
 }
@@ -25,27 +26,44 @@ export default function Calendar(props: CalendarProps) {
   }
 
   return (
-    <Card className="w-full h-full flex flex-col items-start justify-center gap-4 rounded-2xl p-8">
-      <ToggleGroup type="multiple" onValueChange={handleValueChange}>
-        {props.eventSources.map(source => (
-          <ToggleGroupItem
-            variant="outline"
-            key={source.id}
-            value={source.id}
-            className="rounded-2xl"
-            style={{ color: source.color, borderColor: source.color }}
-          >
-            {source.id}
-          </ToggleGroupItem>
-        ))}
-      </ToggleGroup>
+    <div className="motion-blur-in w-full h-full flex flex-col lg:flex-row items-start justify-center gap-4 rounded-2xl px-8 pt-6">
+      <div className="flex flex-col gap-4 text-left text-lmublue font-[family-name:var(--font-metric-bold)]">
+        <h1 className="text-4xl sm:text-5xl w-full md:w-48 transition-all">
+          {props.title}
+        </h1>
+        <ToggleGroup
+          type="multiple"
+          onValueChange={handleValueChange}
+          className="flex flex-row lg:flex-col items-start transition-all"
+        >
+          {props.eventSources.map(source => {
+            const active = selected.has(source.id)
+            return (
+              <ToggleGroupItem
+                variant="outline"
+                key={source.id}
+                value={source.id}
+                className="text-xs sm:text-sm rounded-2xl transition-all"
+                style={{ color: source.color, borderColor: source.color }}
+              >
+                {source.id}
+                {active && (
+                  <div className="motion-preset-slide-right motion-duration-300">
+                    <CheckIcon />
+                  </div>
+                )}
+              </ToggleGroupItem>
+            )
+          })}
+        </ToggleGroup>
+      </div>
       <div className="motion-preset-fade motion-duration-1000 hidden sm:block">
         <Dialog
           modal={false}
           open={isDialogOpen}
           onOpenChange={setIsDialogOpen}
         >
-          <DialogContent className="bg-card w-auto p-10">
+          <DialogContent className="bg-background w-auto p-10 pb-4">
             <DialogTitle className="text-lmublue">
               {eventInfo.title}
             </DialogTitle>
@@ -90,8 +108,9 @@ export default function Calendar(props: CalendarProps) {
             source => selected.has(source.id) || selected.size === 0
           )}
           contentHeight="auto"
+          eventClassNames="motion-preset-focus"
         />
       </div>
-    </Card>
+    </div>
   )
 }
