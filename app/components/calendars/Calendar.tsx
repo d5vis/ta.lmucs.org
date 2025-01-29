@@ -1,34 +1,34 @@
-"use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import iCalendarPlugin from "@fullcalendar/icalendar";
-import listPlugin from "@fullcalendar/list";
-import { Card } from "@/components/ui/card";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { EventInfo } from "@/app/utils/types";
-import { Dialog, DialogTitle, DialogContent } from "@/components/ui/dialog";
+'use client'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import FullCalendar from '@fullcalendar/react'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import iCalendarPlugin from '@fullcalendar/icalendar'
+import listPlugin from '@fullcalendar/list'
+import { Card } from '@/components/ui/card'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { EventInfo } from '@/app/utils/types'
+import { Dialog, DialogTitle, DialogContent } from '@/components/ui/dialog'
 
 interface CalendarProps {
-  eventSources: { url: string; format: string; color: string; id: string }[];
-  hiddenDays?: number[];
+  eventSources: { url: string; format: string; color: string; id: string }[]
+  hiddenDays?: number[]
 }
 
 export default function Calendar(props: CalendarProps) {
-  const [eventInfo, setEventInfo] = useState<EventInfo>({});
-  const [selected, setSelected] = useState(new Set<string>());
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [eventInfo, setEventInfo] = useState<EventInfo>({})
+  const [selected, setSelected] = useState(new Set<string>())
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const handleValueChange = (values: string[]) => {
-    setSelected(new Set(values));
-  };
+    setSelected(new Set(values))
+  }
 
   return (
     <Card className="w-full h-full flex flex-col items-start justify-center gap-4 rounded-2xl p-8">
       <ToggleGroup type="multiple" onValueChange={handleValueChange}>
-        {props.eventSources.map((source) => (
+        {props.eventSources.map(source => (
           <ToggleGroupItem
             variant="outline"
             key={source.id}
@@ -65,14 +65,14 @@ export default function Calendar(props: CalendarProps) {
         <FullCalendar
           plugins={[timeGridPlugin, dayGridPlugin, iCalendarPlugin]}
           eventSources={props.eventSources.filter(
-            (source) => selected.has(source.id) || selected.size === 0
+            source => selected.has(source.id) || selected.size === 0
           )}
           nowIndicator={true}
           slotMinTime="08:00:00"
           slotMaxTime="22:00:00"
           hiddenDays={props.hiddenDays}
           contentHeight="auto"
-          eventClick={(info) => {
+          eventClick={info => {
             const details: EventInfo = {
               title: info.event.title,
               start: info.event.start,
@@ -80,9 +80,9 @@ export default function Calendar(props: CalendarProps) {
               startISO: info.event.start?.toLocaleTimeString(),
               endISO: info.event.end?.toLocaleTimeString(),
               description: info.event.extendedProps.description,
-            };
-            setEventInfo(details);
-            setIsDialogOpen(true);
+            }
+            setEventInfo(details)
+            setIsDialogOpen(true)
           }}
         />
       </motion.div>
@@ -95,11 +95,11 @@ export default function Calendar(props: CalendarProps) {
           plugins={[listPlugin, iCalendarPlugin]}
           initialView="listWeek"
           eventSources={props.eventSources.filter(
-            (source) => selected.has(source.id) || selected.size === 0
+            source => selected.has(source.id) || selected.size === 0
           )}
           contentHeight="auto"
         />
       </motion.div>
     </Card>
-  );
+  )
 }
