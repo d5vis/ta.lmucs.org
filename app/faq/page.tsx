@@ -75,7 +75,7 @@ const FAQ_ITEMS = [
 
 export default function FAQ() {
   return (
-    <div className="motion-blur-in w-full h-full text-left flex flex-col md:flex-row gap-4 px-8 py-6">
+    <div className="motion-preset-blur-up w-full h-full text-left flex flex-col md:flex-row gap-4 px-8 py-6">
       <div>
         <h1 className="text-4xl sm:text-5xl w-full md:w-64 text-lmublue font-[family-name:var(--font-metric-bold)] transition-all">
           Frequently Asked Questions

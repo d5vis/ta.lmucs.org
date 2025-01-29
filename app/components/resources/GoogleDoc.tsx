@@ -39,7 +39,7 @@ export default function GoogleDoc(props: GoogleDocProps) {
   }, [isPortrait, props.documentId])
 
   return (
-    <div className="motion-blur-in w-full h-full flex flex-col lg:flex-row items-start justify-center gap-6 px-8 py-6">
+    <div className="motion-preset-blur-up w-full h-full flex flex-col lg:flex-row items-start justify-center gap-6 px-8 py-6">
       <h1 className="text-left text-5xl w-full md:max-w-64 text-lmublue font-[family-name:var(--font-metric-bold)]">
         {props.title}
       </h1>

@@ -26,7 +26,7 @@ export default function Calendar(props: CalendarProps) {
   }
 
   return (
-    <div className="motion-blur-in w-full h-full flex flex-col lg:flex-row items-start justify-center gap-4 rounded-2xl px-8 pt-6">
+    <div className="motion-preset-blur-up w-full h-full flex flex-col lg:flex-row items-start justify-center gap-4 rounded-2xl px-8 pt-6">
       <div className="flex flex-col gap-4 text-left text-lmublue font-[family-name:var(--font-metric-bold)]">
         <h1 className="text-4xl sm:text-5xl w-full md:w-48 transition-all">
           {props.title}
