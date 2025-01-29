@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -40,11 +39,7 @@ export default function Calendar(props: CalendarProps) {
           </ToggleGroupItem>
         ))}
       </ToggleGroup>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="hidden sm:block"
-      >
+      <div className="motion-preset-fade motion-duration-1000 hidden sm:block">
         <Dialog
           modal={false}
           open={isDialogOpen}
@@ -84,13 +79,10 @@ export default function Calendar(props: CalendarProps) {
             setEventInfo(details)
             setIsDialogOpen(true)
           }}
+          eventClassNames="motion-preset-slide-up"
         />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="w-full sm:hidden"
-      >
+      </div>
+      <div className="motion-preset-fade motion-duration-1000 w-full sm:hidden text-sm">
         <FullCalendar
           plugins={[listPlugin, iCalendarPlugin]}
           initialView="listWeek"
@@ -99,7 +91,7 @@ export default function Calendar(props: CalendarProps) {
           )}
           contentHeight="auto"
         />
-      </motion.div>
+      </div>
     </Card>
   )
 }

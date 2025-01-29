@@ -1,13 +1,12 @@
 'use client'
 import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 export default function FAQ() {
   return (
     <Card className="w-full h-full text-left gap-4 rounded-2xl p-8">
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <div className="motion-preset-fade motion-duration-1000 ">
         <h2 className="text-xl text-lmublue font-[family-name:var(--font-metric-bold)]">
           Tips from the CS Professors
         </h2>
@@ -75,7 +74,7 @@ export default function FAQ() {
             </li>
           </ul>
         </div>
-      </motion.div>
+      </div>
     </Card>
   )
 }
