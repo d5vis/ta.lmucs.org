@@ -1,19 +1,19 @@
 import Logo from './Logo'
 import AppBar from './AppBar'
 
-const BANNER_CONTENT = ''
-// const BANNER_CONTENT = (
-//   <div>
-//     LMUHacks 2025 is happening on March 15th! {''}
-//     <a
-//       href="https://forms.gle/javPabKzcZUhi6f46"
-//       target="_blank"
-//       className="underline"
-//     >
-//       Register now!
-//     </a>
-//   </div>
-// )
+// const BANNER_CONTENT = ''
+const BANNER_CONTENT = (
+  <div>
+    LMUHacks 2025 is happening on March 15th! {''}
+    <a
+      href="https://forms.gle/javPabKzcZUhi6f46"
+      target="_blank"
+      className="underline"
+    >
+      Register now!
+    </a>
+  </div>
+)
 
 const Header = () => {
   return (
