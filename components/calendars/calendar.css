@@ -14,13 +14,11 @@ a.fc-timegrid-event {
   border-radius: 16px;
 }
 
-@layer base {
-  :root {
-    --fc-button-bg-color: hsla(var(--lmublue));
-    --fc-button-hover-bg-color: #005c83;
-    --fc-button-active-bg-color: #004c6d;
-    --fc-button-border-color: hsla(var(--border));
-    --fc-button-hover-border-color: hsla(var(--border));
-    --fc-button-active-border-color: hsla(var(--border));
-  }
+:root {
+  --fc-button-bg-color: hsla(var(--lmublue));
+  --fc-button-hover-bg-color: #005c83;
+  --fc-button-active-bg-color: #004c6d;
+  --fc-button-border-color: hsla(var(--background));
+  --fc-button-hover-border-color: hsla(var(--background));
+  --fc-button-active-border-color: hsla(var(--background));
 }

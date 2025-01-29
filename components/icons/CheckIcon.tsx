@@ -3,16 +3,11 @@ import { FC } from 'react'
 export const CheckIcon: FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="size-4"
+    height="16px"
+    viewBox="0 -960 960 960"
+    width="16px"
+    fill="currentColor"
   >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="m4.5 12.75 6 6 9-13.5"
-    />
+    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
   </svg>
 )

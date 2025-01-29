@@ -13,7 +13,7 @@ import {
 import { QuestionIcon } from '@/components/icons/QuestionIcon'
 import { DocumentIcon } from '@/components/icons/DocumentIcon'
 import { LinkIcon } from '@/components/icons/LinkIcon'
-import { PeopleIcon } from '@/components/icons/PeopleIcon'
+import { ForumIcon } from '@/components/icons/ForumIcon'
 import { CalendarIcon } from '@/components/icons/CalendarIcon'
 
 const NAV_LIST_BUTTONS = [
@@ -99,7 +99,7 @@ const NAV_MENU_BUTTONS = [
         href: 'https://linktr.ee/lmucs',
       },
       {
-        icon: <PeopleIcon />,
+        icon: <ForumIcon />,
         label: 'Slack',
         href: 'https://lmucs.slack.com/',
       },
