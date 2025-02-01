@@ -21,13 +21,13 @@ export const TUTORING_EVENTS_SOURCES = [
     url: CORS_PROXY_BASE_URL + encodeURIComponent(CLASS_2120_URL),
     format: 'ics',
     color: '#832B94',
-    id: '2120/2130',
+    id: '2000',
   },
   {
     url: CORS_PROXY_BASE_URL + encodeURIComponent(CLASS_GENERAL_URL),
     format: 'ics',
     color: '#5476D0',
-    id: '2000/3000',
+    id: '3000+',
   },
   {
     url: CORS_PROXY_BASE_URL + encodeURIComponent(EVENTS_ICAL_URL),
@@ -42,7 +42,7 @@ export const TEACHING_EVENTS_SOURCES = [
     url: CORS_PROXY_BASE_URL + encodeURIComponent(TEACHING_1010_URL),
     format: 'ics',
     color: '#328A49',
-    id: '1010',
+    id: '1000',
   },
   {
     url: CORS_PROXY_BASE_URL + encodeURIComponent(TEACHING_2000_URL),
