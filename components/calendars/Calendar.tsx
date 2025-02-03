@@ -49,11 +49,13 @@ export default function Calendar(props: CalendarProps) {
                 style={{ color: source.color, borderColor: source.color }}
               >
                 {source.id}
-                {active && (
-                  <div className="motion-preset-slide-right motion-duration-300">
-                    <CheckIcon />
-                  </div>
-                )}
+                <div
+                  className={`w-0 opacity-0 motion-preset-slide-right motion-duration-300 ${
+                    active ? 'w-3 opacity-100' : null
+                  } transition-all`}
+                >
+                  <CheckIcon />
+                </div>
               </ToggleGroupItem>
             )
           })}

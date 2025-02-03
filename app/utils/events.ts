@@ -15,7 +15,7 @@ export const TUTORING_EVENTS_SOURCES = [
     url: CORS_PROXY_BASE_URL + encodeURIComponent(CLASS_1010_URL),
     format: 'ics',
     color: '#328A49',
-    id: '1010',
+    id: '1000',
   },
   {
     url: CORS_PROXY_BASE_URL + encodeURIComponent(CLASS_2120_URL),
