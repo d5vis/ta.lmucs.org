@@ -119,7 +119,7 @@ const AppBar = () => {
             <Button
               key={button.label}
               variant="ghost"
-              className="text-md rounded-xl"
+              className="text-md rounded-xl active:scale-90 transition-all"
               asChild
             >
               <Link
