@@ -54,7 +54,7 @@ export const TEACHING_EVENTS_SOURCES = [
     url: CORS_PROXY_BASE_URL + encodeURIComponent(TEACHING_3000_URL),
     format: 'ics',
     color: '#5476D0',
-    id: '3000',
+    id: '3000+',
   },
   {
     url: CORS_PROXY_BASE_URL + encodeURIComponent(TEACHING_GRAD_URL),
