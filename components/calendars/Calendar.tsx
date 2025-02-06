@@ -68,7 +68,7 @@ export default function Calendar(props: CalendarProps) {
           onOpenChange={setIsDialogOpen}
         >
           <DialogContent className="bg-background w-auto p-10 pb-4">
-            <DialogTitle className="text-lmublue">
+            <DialogTitle className="text-lmublue text-xl">
               {eventInfo.title}
             </DialogTitle>
             <p>
@@ -76,6 +76,7 @@ export default function Calendar(props: CalendarProps) {
                 {eventInfo.startISO} - {eventInfo.endISO}
               </b>
             </p>
+            <p>{eventInfo.location}</p>
             <p>{eventInfo.description}</p>
           </DialogContent>
         </Dialog>
@@ -94,8 +95,17 @@ export default function Calendar(props: CalendarProps) {
               title: info.event.title,
               start: info.event.start,
               end: info.event.end,
-              startISO: info.event.start?.toLocaleTimeString(),
-              endISO: info.event.end?.toLocaleTimeString(),
+              startISO: info.event.start?.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true,
+              }),
+              endISO: info.event.end?.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true,
+              }),
+              location: info.event.extendedProps.location,
               description: info.event.extendedProps.description,
             }
             setEventInfo(details)
