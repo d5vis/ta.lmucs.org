@@ -36,8 +36,7 @@ const NAV_LIST_BUTTONS = [
   },
   {
     label: 'Faculty',
-    href: 'https://docs.google.com/presentation/d/e/2PACX-1vTdyFvGRqePNnh7nR4xhPoj1M95dK-fObFws4riRT3lGSzR3T4PGrqnKKbiL0LE9XEiwQEBlq7tWQR3/pub',
-    target: '_blank',
+    href: '/faculty',
   },
 ]
 
@@ -86,6 +85,11 @@ const NAV_MENU_BUTTONS = [
         icon: <DocumentIcon />,
         label: 'Printing',
         href: '/print',
+      },
+      {
+        icon: <DocumentIcon />,
+        label: 'Faculty',
+        href: '/faculty',
       },
     ],
   },
