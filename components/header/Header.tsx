@@ -22,7 +22,7 @@ const Header = () => {
         <Logo />
         <AppBar />
       </div>
-      {BANNER_CONTENT && <Banner body={BANNER_CONTENT} />}
+      {/* {BANNER_CONTENT && <Banner body={BANNER_CONTENT} />} */}
     </div>
   )
 }
