@@ -1,7 +1,11 @@
-import GoogleDoc from '@/components/resources/GoogleDoc'
-
-const DOC_ID = '1-flwt_H_L78R2RmcLg6p4kq1Q6nUxJURxYok3MJ306o'
+'use client'
+import MarkdownPreview from '@/components/resources/MarkdownPreview'
 
 export default function Print() {
-  return <GoogleDoc documentId={DOC_ID} title="Printing" />
+  return (
+    <MarkdownPreview
+      title="Printing"
+      url="https://ta-onboarding-next.vercel.app/api/markdown/printing"
+    />
+  )
 }
