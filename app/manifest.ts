@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Loyola Marymount University Computer Science',
     start_url: '/',
     display: 'standalone',
-    background_color: '	#f5f5f5',
+    background_color: '#f5f5f5',
     theme_color: '#f5f5f5',
     icons: [
       {
