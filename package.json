@@ -2,9 +2,6 @@
   "name": "ta.lmucs.org",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "pnpm": ">=9.14.4"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
