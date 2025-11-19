@@ -9,7 +9,7 @@
 
 - Use university equipment only for authorized purposes.
 - Keep work areas clean and avoid actions that may damage facilities.
-- Failure to maintain clean, orderly, and sanitary conditions in any area, whether on-duty or off-duty, is grounds for immediate termination.
+- **Failure to maintain clean, orderly, and sanitary conditions in any area, whether on-duty or off-duty, is grounds for immediate termination.**
 
 ### **Security of Customers and Staff**
 
@@ -34,7 +34,7 @@ These rules apply **any time** someone (TA or not) is in the lab.
 
 - Handle all university property with care.
 - Use tools and equipment according to instructions to prevent damage.
-- Failure to maintain clean, orderly, and sanitary conditions in any area, whether on-duty or off-duty, is grounds for immediate termination.
+- **Failure to maintain clean, orderly, and sanitary conditions in any area, whether on-duty or off-duty, is grounds for immediate termination.**
 
 ### **Supporting TAs and Students**
 
@@ -45,4 +45,4 @@ These rules apply **any time** someone (TA or not) is in the lab.
 
 - Adhere to all hygiene, sanitation, and safety protocols.
 - Comply with emergency procedures and evacuation rules.
-- Failure to maintain clean, orderly, and sanitary conditions in any area, whether on-duty or off-duty, is grounds for immediate termination.
+- **Failure to maintain clean, orderly, and sanitary conditions in any area, whether on-duty or off-duty, is grounds for immediate termination.**
