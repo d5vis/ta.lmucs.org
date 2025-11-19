@@ -24,7 +24,7 @@ const NAV_LIST_BUTTONS = [
     href: 'https://tutor.lmucs.org/list',
     target: '_blank',
   },
-  { label: 'FAQ', href: '/faq' },
+  { label: 'Lab Rules', href: '/lab-rules' },
   { label: 'Resources', href: '/resources' },
   { label: 'Onboarding', href: '/onboarding' },
   { label: 'Printing', href: '/print' },
@@ -67,9 +67,9 @@ const NAV_MENU_BUTTONS = [
     icon: <QuestionIcon />,
     children: [
       {
-        icon: <QuestionIcon />,
-        label: 'FAQ',
-        href: '/faq',
+        icon: <DocumentIcon />,
+        label: 'Lab Rules',
+        href: '/lab-rules',
       },
       {
         icon: <DocumentIcon />,
