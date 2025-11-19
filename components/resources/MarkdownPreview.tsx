@@ -15,7 +15,7 @@ const MarkdownPreview = ({ title, url }: { title: string; url: string }) => {
         .then(text => setMarkdown(text))
     }
     fetchMarkdown()
-  }, [])
+  }, [url])
 
   return (
     <div className="motion-preset-blur-up w-full h-full flex flex-col lg:flex-row items-start justify-center gap-4 px-8 py-6 text-left">
