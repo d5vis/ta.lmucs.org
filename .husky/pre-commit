@@ -1,1 +1,1 @@
-pnpm precommit
+pnpm run ci
