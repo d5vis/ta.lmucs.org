@@ -1,4 +1,4 @@
-## **Reasonable Rules for Safety, Security, and Order**
+## **Rules for Safety, Security, and Order**
 
 ### **Physical Safety**
 
@@ -23,7 +23,7 @@
 
 These rules apply **any time** someone (TA or not) is in the lab.
 
-## **2. Rules About Conduct That Impacts the Workplace**
+## **Rules for Workplace Operations and Conduct**
 
 ### **Maintaining Smooth Operations**
 
