@@ -18,7 +18,7 @@ import { CalendarIcon } from '@/components/icons/CalendarIcon'
 
 const NAV_LIST_BUTTONS = [
   { label: 'Tutors', href: '/' },
-  { label: 'Teaching', href: '/teaching' },
+  { label: 'Teaching', href: 'https://schedule.lmucs.org/', target: '_blank' },
   {
     label: 'Real-time Display',
     href: 'https://tutor.lmucs.org/list',
@@ -53,7 +53,8 @@ const NAV_MENU_BUTTONS = [
       {
         icon: <CalendarIcon />,
         label: 'Teaching Schedule',
-        href: '/teaching',
+        href: 'https://schedule.lmucs.org/',
+        target: '_blank' as const,
       },
       {
         icon: <CalendarIcon />,
@@ -161,6 +162,7 @@ const AppBar = () => {
                           >
                             <Link
                               href={child.href}
+                              target={child.target}
                               className="flex items-center gap-2 text-left w-full"
                             >
                               {child.icon}
