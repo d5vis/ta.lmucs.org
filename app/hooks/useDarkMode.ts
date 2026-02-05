@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
-export const useDarkMode = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+const darkModeQuery = () =>
+  typeof window !== "undefined"
+    ? window.matchMedia("(prefers-color-scheme: dark)")
+    : null;
 
-  useEffect(() => {
-    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsDarkMode(prefersDarkMode.matches);
-
-    const handleDarkModeChange = (event: MediaQueryListEvent) => {
-      setIsDarkMode(event.matches);
-    };
-    prefersDarkMode.addEventListener("change", handleDarkModeChange);
-    return () => {
-      prefersDarkMode.removeEventListener("change", handleDarkModeChange);
-    };
-  }, []);
-
-  return isDarkMode;
+const subscribe = (callback: () => void) => {
+  const mql = darkModeQuery();
+  mql?.addEventListener("change", callback);
+  return () => mql?.removeEventListener("change", callback);
 };
+
+const getSnapshot = () => darkModeQuery()?.matches ?? false;
+
+const getServerSnapshot = () => false;
+
+export const useDarkMode = () =>
+  useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
