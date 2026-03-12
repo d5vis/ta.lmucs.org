@@ -3,14 +3,12 @@ import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 
-const CORS_PROXY_URL = 'https://corsproxy.io/?url='
-
 const MarkdownPreview = ({ title, url }: { title: string; url: string }) => {
   const [markdown, setMarkdown] = useState<string>('')
 
   useEffect(() => {
     const fetchMarkdown = async () => {
-      await fetch(CORS_PROXY_URL + url)
+      await fetch('/api/markdown-proxy?url=' + encodeURIComponent(url))
         .then(response => response.text())
         .then(text => setMarkdown(text))
     }
