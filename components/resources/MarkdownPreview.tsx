@@ -8,9 +8,13 @@ const MarkdownPreview = ({ title, url }: { title: string; url: string }) => {
 
   useEffect(() => {
     const fetchMarkdown = async () => {
-      await fetch('/api/markdown-proxy?url=' + encodeURIComponent(url))
-        .then(response => response.text())
-        .then(text => setMarkdown(text))
+      const response = await fetch('/api/markdown-proxy?url=' + encodeURIComponent(url))
+      const text = await response.text()
+      const replaced = text.replace(
+        'https://github.com/user-attachments/assets/de006115-94ac-446c-ad33-ec6bce71889b',
+        '/images/mac_add_printer.png'
+      )
+      setMarkdown(replaced)
     }
     fetchMarkdown()
   }, [url])
