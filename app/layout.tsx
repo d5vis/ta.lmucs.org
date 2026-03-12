@@ -19,8 +19,13 @@ const metricBold = localFont({
   weight: '700',
 })
 
+const isDev = process.env.NODE_ENV === 'development'
+
 export const metadata: Metadata = {
-  title: 'LMUCS',
+  title: {
+    template: isDev ? '[DEV] %s' : '%s',
+    default: isDev ? '[DEV] LMUCS' : 'LMUCS',
+  },
   description: 'LMU Computer Science',
 }
 
