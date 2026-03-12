@@ -10,8 +10,10 @@ function isHeadingLine(line: string): boolean {
   if (!t) return false
   // Must not contain a colon followed by content (key: value pattern)
   const hasKeyValue = /:.+/.test(t)
+  // Allow longer lines for questions (FAQ subheadings)
+  const maxLen = t.endsWith('?') ? 100 : 50
   return (
-    t.length <= 50 &&
+    t.length <= maxLen &&
     !hasKeyValue &&
     !t.match(/https?:\/\//) &&
     !t.includes('@') &&
@@ -270,16 +272,6 @@ export default async function GoogleDocPage({
         {sections.map((section, i) => {
           const isParent = parentHeadings.length > 0 &&
             parentHeadings.some(h => section.heading.toLowerCase().includes(h.toLowerCase()))
-          const currentParent = (() => {
-            for (let k = i; k >= 0; k--) {
-              const s = sections[k]
-              if (parentHeadings.some(h => s.heading.toLowerCase().includes(h.toLowerCase()))) {
-                return s.heading.toLowerCase()
-              }
-            }
-            return ''
-          })()
-          const isFaqChild = !isParent && currentParent.includes('faq')
           return (
           <section key={i} className={`flex flex-col gap-3 ${isParent ? 'mt-4' : ''}`}>
             {isParent ? (
@@ -290,7 +282,7 @@ export default async function GoogleDocPage({
               </h2>
             ) : (
               <h3
-                className={`text-xl font-[family-name:var(--font-metric-bold)] ${isFaqChild ? 'text-lmucrimson/80' : getHeadingColor(section.heading)}`}
+                className={`text-xl font-[family-name:var(--font-metric-bold)] ${getHeadingColor(section.heading)}`}
               >
                 {section.heading}
               </h3>

@@ -16,6 +16,7 @@ export default async function Resources() {
         'Public Learning Resources',
         'University Resources',
         'Department Resources',
+        'LMU Student Resources',
         'FAQs',
       ]}
     />
