@@ -1,7 +1,19 @@
-import GoogleDoc from '@/components/resources/GoogleDoc'
+import GoogleDocPage from '@/components/resources/GoogleDocPage'
 
-const RESOURCE_DOCUMENT_ID = '1PkUHhsyFGwRSkPc7IIz5VpnajxFUeePNDSOxLczobqk'
+const DOC_ID = '1PkUHhsyFGwRSkPc7IIz5VpnajxFUeePNDSOxLczobqk'
 
-export default function Resources() {
-  return <GoogleDoc documentId={RESOURCE_DOCUMENT_ID} title="Resources" />
+export default async function Resources() {
+  return (
+    <GoogleDocPage
+      title="Resources"
+      docId={DOC_ID}
+      skipFirstSection={false}
+      parentHeadings={[
+        'Tips from the CS Professors',
+        'Public Learning Resources',
+        'University Resources',
+        'Department Resources',
+      ]}
+    />
+  )
 }
