@@ -10,10 +10,15 @@ const MarkdownPreview = ({ title, url }: { title: string; url: string }) => {
     const fetchMarkdown = async () => {
       const response = await fetch('/api/markdown-proxy?url=' + encodeURIComponent(url))
       const text = await response.text()
-      const replaced = text.replace(
-        'https://github.com/user-attachments/assets/de006115-94ac-446c-ad33-ec6bce71889b',
-        '/images/mac_add_printer.png'
-      )
+      const replaced = text
+        .replace(
+          'https://github.com/user-attachments/assets/de006115-94ac-446c-ad33-ec6bce71889b',
+          '/images/mac_add_printer.png'
+        )
+        .replace(
+          'https://bit.ly/poster-printing-cs',
+          '/print/posters'
+        )
       setMarkdown(replaced)
     }
     fetchMarkdown()
