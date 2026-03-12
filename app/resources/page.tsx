@@ -1,4 +1,7 @@
+import { Metadata } from 'next'
 import GoogleDocPage from '@/components/resources/GoogleDocPage'
+
+export const metadata: Metadata = { title: 'Resources | LMUCS' }
 
 const DOC_ID = '1PkUHhsyFGwRSkPc7IIz5VpnajxFUeePNDSOxLczobqk'
 

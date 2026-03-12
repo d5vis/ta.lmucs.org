@@ -1,7 +1,10 @@
+import { Metadata } from 'next'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import Markdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
+
+export const metadata: Metadata = { title: 'Lab Rules | LMUCS' }
 
 export default function LabRules() {
   const markdownPath = join(process.cwd(), 'src', 'markdown', 'lab_rules.md')

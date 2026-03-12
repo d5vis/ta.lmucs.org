@@ -1,4 +1,4 @@
-'use client'
+import { Metadata } from 'next'
 import {
   Accordion,
   AccordionContent,
@@ -6,6 +6,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion'
 import Link from 'next/link'
+
+export const metadata: Metadata = { title: 'FAQ | LMUCS' }
 
 const FAQ_ITEMS = [
   {
