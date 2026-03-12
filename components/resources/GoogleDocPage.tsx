@@ -20,7 +20,6 @@ function isHeadingLine(line: string): boolean {
     !t.match(/^\d+\./) &&
     !t.endsWith('.') &&
     !t.endsWith('!') &&
-    !t.endsWith('?') &&
     !t.endsWith(':') &&
     !t.endsWith(')') &&
     !t.startsWith('(')
@@ -29,11 +28,11 @@ function isHeadingLine(line: string): boolean {
 
 function isHeadingBlock(trimmed: string): boolean {
   const isSingleLine = trimmed.split('\n').length <= 2
-  const isShort = trimmed.length <= 80
+  const isShort = trimmed.length <= 100
   const hasNoUrl = !trimmed.match(/https?:\/\//)
   const hasNoEmail = !trimmed.includes('@')
   const isNotList = !trimmed.startsWith('*') && !trimmed.startsWith(' ') && !trimmed.match(/^\d+\./)
-  const isNotSentence = !trimmed.endsWith('.') && !trimmed.endsWith('!') && !trimmed.endsWith('?') && !trimmed.endsWith(':')
+  const isNotSentence = !trimmed.endsWith('.') && !trimmed.endsWith('!') && !trimmed.endsWith(':')
   return isSingleLine && isShort && hasNoUrl && hasNoEmail && isNotList && isNotSentence
 }
 
@@ -271,6 +270,16 @@ export default async function GoogleDocPage({
         {sections.map((section, i) => {
           const isParent = parentHeadings.length > 0 &&
             parentHeadings.some(h => section.heading.toLowerCase().includes(h.toLowerCase()))
+          const currentParent = (() => {
+            for (let k = i; k >= 0; k--) {
+              const s = sections[k]
+              if (parentHeadings.some(h => s.heading.toLowerCase().includes(h.toLowerCase()))) {
+                return s.heading.toLowerCase()
+              }
+            }
+            return ''
+          })()
+          const isFaqChild = !isParent && currentParent.includes('faq')
           return (
           <section key={i} className={`flex flex-col gap-3 ${isParent ? 'mt-4' : ''}`}>
             {isParent ? (
@@ -281,7 +290,7 @@ export default async function GoogleDocPage({
               </h2>
             ) : (
               <h3
-                className={`text-xl font-[family-name:var(--font-metric-bold)] ${getHeadingColor(section.heading)}`}
+                className={`text-xl font-[family-name:var(--font-metric-bold)] ${isFaqChild ? 'text-lmucrimson/80' : getHeadingColor(section.heading)}`}
               >
                 {section.heading}
               </h3>
