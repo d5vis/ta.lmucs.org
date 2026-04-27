@@ -44,9 +44,9 @@ function NodeView({ node }: { node: DriveNode }) {
   const fileCount = countFiles(node)
   return (
     <li className="ml-2 py-1">
-      <details open className="group">
+      <details open className="[&[open]>summary>span:first-child]:rotate-90">
         <summary className="cursor-pointer list-none flex items-center gap-2 hover:bg-accent/10 dark:hover:bg-accent/20 rounded px-1 py-0.5">
-          <span className="inline-block transition-transform group-open:rotate-90 text-gray-500 select-none">
+          <span className="inline-block transition-transform duration-150 text-gray-500 select-none">
             ▶
           </span>
           <span className="font-[family-name:var(--font-metric-bold)] text-lmublue">
