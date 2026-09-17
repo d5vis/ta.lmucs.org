@@ -37,7 +37,7 @@ describe('isShiftLevel', () => {
 })
 
 describe('toCalendarEvents', () => {
-  it('makes a weekly event bounded by the semester, the end made exclusive', () => {
+  it('bounds a shift without dates of its own by the semester, the end made exclusive', () => {
     expect(toCalendarEvents([fall], '1000')).toEqual([
       {
         id: 'n10101',
@@ -64,7 +64,34 @@ describe('toCalendarEvents', () => {
     expect(titles).toEqual(['Cara B. (3300)', 'Cara B.'])
   })
 
-  it('skips a semester whose dates are unknown rather than repeating it forever', () => {
+  it("repeats a shift over its own dates, not the semester's", () => {
+    // Moved for one week in TA Draft: three runs of the same weekly shift.
+    const split = {
+      ...fall,
+      shifts: [
+        { ...shift(['1010']), nid: 'before', startDate: '2026-08-31', endDate: '2026-09-07' },
+        { ...shift(['1010'], 2), nid: 'moved', startDate: '2026-09-15', endDate: '2026-09-15' },
+        { ...shift(['1010']), nid: 'after', startDate: '2026-09-21', endDate: '2026-12-14' },
+      ],
+    }
+    expect(
+      toCalendarEvents([split], '1000').map(event => [event.id, event.startRecur, event.endRecur])
+    ).toEqual([
+      ['before', '2026-08-31', '2026-09-08'],
+      ['moved', '2026-09-15', '2026-09-16'],
+      ['after', '2026-09-21', '2026-12-15'],
+    ])
+  })
+
+  it('skips a shift with no dates at all rather than repeating it forever', () => {
     expect(toCalendarEvents([{ ...fall, startDate: null }], '1000')).toEqual([])
+    expect(toCalendarEvents([{ ...fall, endDate: null }], '1000')).toEqual([])
+  })
+
+  it('places a dated shift even when the semester has no dates', () => {
+    const dated = { ...shift(['1010']), startDate: '2026-08-31', endDate: '2026-12-14' }
+    const events = toCalendarEvents([{ ...fall, startDate: null, endDate: null, shifts: [dated] }], '1000')
+    expect(events).toHaveLength(1)
+    expect(events[0]).toMatchObject({ startRecur: '2026-08-31', endRecur: '2026-12-15' })
   })
 })

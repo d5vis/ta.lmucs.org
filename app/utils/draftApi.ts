@@ -17,10 +17,20 @@ import type { TutoringShiftsResponse } from './tutoringShifts'
  * recruit-next itself, over its own signed connection, so this site talks to
  * one app only.
  */
-const DRAFT_BASE_URL_DEV = 'http://localhost:3000'
 const DRAFT_BASE_URL_PROD = 'https://draft.lmucs.org'
-const DRAFT_BASE_URL =
-  process.env.NODE_ENV === 'development' ? DRAFT_BASE_URL_DEV : DRAFT_BASE_URL_PROD
+/**
+ * `next dev` takes the first free port from 3000 up, so where TA Draft lands
+ * depends on what else is running. Each is tried in turn, and the app header
+ * below tells TA Draft from whatever else answers. With no TA Draft running
+ * locally, dev falls back to the live one.
+ */
+const DRAFT_BASE_URLS_DEV = [3000, 3001, 3002, 3003].map(
+  port => `http://localhost:${port}`
+)
+const DRAFT_BASE_URLS =
+  process.env.NODE_ENV === 'development'
+    ? [...DRAFT_BASE_URLS_DEV, DRAFT_BASE_URL_PROD]
+    : [DRAFT_BASE_URL_PROD]
 
 const TUTORING_SHIFTS_PATH = '/api/tutoring-shifts'
 
@@ -67,8 +77,8 @@ export function signedHeaders(
 const CACHE_SECONDS = 60
 let cached: { at: DateTime; shifts: Promise<TutoringShiftsResponse> } | null = null
 
-async function requestTutoringShifts(): Promise<TutoringShiftsResponse> {
-  const url = `${DRAFT_BASE_URL}${TUTORING_SHIFTS_PATH}`
+async function requestTutoringShiftsFrom(baseUrl: string): Promise<TutoringShiftsResponse> {
+  const url = `${baseUrl}${TUTORING_SHIFTS_PATH}`
   const response = await axios.get<TutoringShiftsResponse>(url, {
     headers: signedHeaders('GET', TUTORING_SHIFTS_PATH, ''),
     timeout: 15_000,
@@ -77,6 +87,26 @@ async function requestTutoringShifts(): Promise<TutoringShiftsResponse> {
     throw new Error(`${url} was not answered by ${APP_NAME}`)
   }
   return response.data
+}
+
+/** The base URL that last answered as TA Draft, tried first from then on. */
+let draftBaseUrl: string | null = null
+
+async function requestTutoringShifts(): Promise<TutoringShiftsResponse> {
+  const known = draftBaseUrl
+  const baseUrls = known ? [known, ...DRAFT_BASE_URLS.filter(url => url !== known)] : DRAFT_BASE_URLS
+  let lastError: unknown = new Error('No TA Draft base URL to try')
+  for (const baseUrl of baseUrls) {
+    try {
+      const shifts = await requestTutoringShiftsFrom(baseUrl)
+      draftBaseUrl = baseUrl
+      return shifts
+    } catch (error) {
+      lastError = error
+    }
+  }
+  draftBaseUrl = null
+  throw lastError
 }
 
 export async function fetchTutoringShifts(): Promise<TutoringShiftsResponse> {

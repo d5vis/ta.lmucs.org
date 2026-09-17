@@ -2,9 +2,10 @@ import { DateTime } from 'luxon'
 
 /**
  * The in-lab tutoring schedule from TA Draft (draft.lmucs.org), turned into
- * FullCalendar events. TA Draft stores one week of shifts per semester, so
- * each shift becomes a weekly recurring event bounded by the semester's dates;
- * semesters before Fall 2026 were kept in Google Calendar and still come from
+ * FullCalendar events. Each shift there repeats weekly between its own first
+ * and last date, so it becomes a weekly recurring event bounded by those; a
+ * shift changed for one week, or from some week on, arrives as several shifts
+ * with shorter runs. Semesters before Fall 2026 were kept in Google Calendar and still come from
  * the ICS feeds in ./events.ts.
  */
 
@@ -20,6 +21,12 @@ export interface TutoringShift {
   /** 24-hour "HH:mm". */
   start: string
   end: string
+  /**
+   * The first and last date (ISO) the shift happens on. Absent from a TA Draft
+   * that predates them, where every shift ran the whole semester.
+   */
+  startDate?: string
+  endDate?: string
 }
 
 export interface SemesterShifts {
@@ -63,7 +70,7 @@ export interface RecurringEvent {
   startTime: string
   endTime: string
   startRecur: string
-  /** Exclusive, so the day after the semester's last day. */
+  /** Exclusive, so the day after the shift's last day. */
   endRecur: string
   extendedProps: { description: string }
 }
@@ -73,24 +80,33 @@ function titleOf(shift: TutoringShift): string {
   return shift.courses.length > 0 ? `${shift.name} (${shift.courses.join(', ')})` : shift.name
 }
 
-/** One level's shifts across every semester that has dates. */
+/**
+ * One level's shifts across every semester. A shift repeats over its own
+ * dates, falling back to the semester's; one with neither is left off rather
+ * than repeated forever.
+ */
 export function toCalendarEvents(semesters: SemesterShifts[], level: ShiftLevel): RecurringEvent[] {
-  return semesters.flatMap(({ semester, startDate, endDate, shifts }) => {
-    if (!startDate || !endDate) return []
-    const endRecur = DateTime.fromISO(endDate).plus({ days: 1 }).toISODate()
-    if (!endRecur) return []
-    return shifts
+  return semesters.flatMap(({ semester, startDate, endDate, shifts }) =>
+    shifts
       .filter(shift => levelOf(shift) === level)
-      .map(shift => ({
-        id: shift.nid,
-        title: titleOf(shift),
-        // ISO weekdays match FullCalendar's (0 = Sunday) for Monday to Saturday.
-        daysOfWeek: [shift.weekday % 7],
-        startTime: shift.start,
-        endTime: shift.end,
-        startRecur: startDate,
-        endRecur,
-        extendedProps: { description: `In-lab tutoring, ${semester}` },
-      }))
-  })
+      .flatMap(shift => {
+        const startRecur = shift.startDate ?? startDate
+        const lastDay = shift.endDate ?? endDate
+        const endRecur = lastDay ? DateTime.fromISO(lastDay).plus({ days: 1 }).toISODate() : null
+        if (!startRecur || !endRecur) return []
+        return [
+          {
+            id: shift.nid,
+            title: titleOf(shift),
+            // ISO weekdays match FullCalendar's (0 = Sunday) for Monday to Saturday.
+            daysOfWeek: [shift.weekday % 7],
+            startTime: shift.start,
+            endTime: shift.end,
+            startRecur,
+            endRecur,
+            extendedProps: { description: `In-lab tutoring, ${semester}` },
+          },
+        ]
+      })
+  )
 }
