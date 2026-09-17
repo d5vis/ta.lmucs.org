@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import axios from 'axios'
 import { connection } from 'next/server'
 
 interface Section {
@@ -221,11 +222,9 @@ export async function fetchGoogleDoc(docId: string): Promise<string> {
   // outside the try: inside it, the catch would swallow Next's bail-out and log it as a failure.
   await connection()
   try {
-    const response = await fetch(url, {
-      redirect: 'follow',
-      cache: 'no-store',
-    })
-    return await response.text()
+    // 'text' keeps Axios from trying to parse the export as JSON.
+    const response = await axios.get<string>(url, { responseType: 'text' })
+    return response.data
   } catch (error) {
     console.error('[GoogleDocPage] Fetch failed:', error)
     return ''
