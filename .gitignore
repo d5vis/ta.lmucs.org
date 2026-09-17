@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+.config
 .playwright-mcp
 
 # dependencies
@@ -37,3 +38,6 @@ next-env.d.ts
 # Debug screenshots
 *.png
 !public/**/*.png
+
+# secret files — synced through EnvStash, not git
+.config/

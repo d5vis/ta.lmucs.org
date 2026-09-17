@@ -6,6 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import iCalendarPlugin from '@fullcalendar/icalendar'
 import listPlugin from '@fullcalendar/list'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { CalendarEventSource } from '@/app/utils/events'
 import { EventInfo } from '@/app/utils/types'
 import { Dialog, DialogTitle, DialogContent } from '@/components/ui/dialog'
 import { CheckIcon } from '../icons/CheckIcon'
@@ -14,7 +15,7 @@ import './calendar.css'
 
 interface CalendarProps {
   title: string
-  eventSources: { url: string; format: string; color: string; id: string }[]
+  eventSources: CalendarEventSource[]
   hiddenDays?: number[]
 }
 
@@ -27,6 +28,15 @@ export default function Calendar(props: CalendarProps) {
     setSelected(new Set(values))
   }
 
+  // One filter button per id, however many feeds share it.
+  const filters = props.eventSources.filter(
+    (source, index, sources) => sources.findIndex(other => other.id === source.id) === index
+  )
+  // FullCalendar wants each source's id to be its own, so the feed's URL stands in.
+  const visibleSources = props.eventSources
+    .filter(source => selected.has(source.id) || selected.size === 0)
+    .map(source => ({ ...source, id: source.url }))
+
   return (
     <div className="motion-preset-blur-up w-full h-full flex flex-col lg:flex-row items-start justify-center gap-4 rounded-2xl px-8 pt-6">
       <div className="flex flex-col gap-4 text-left text-lmublue font-[family-name:var(--font-metric-bold)]">
@@ -38,7 +48,7 @@ export default function Calendar(props: CalendarProps) {
           onValueChange={handleValueChange}
           className="flex flex-row lg:flex-col items-start transition-all"
         >
-          {props.eventSources.map(source => {
+          {filters.map(source => {
             const active = selected.has(source.id)
             return (
               <ToggleGroupItem
@@ -82,9 +92,7 @@ export default function Calendar(props: CalendarProps) {
         </Dialog>
         <FullCalendar
           plugins={[timeGridPlugin, dayGridPlugin, iCalendarPlugin]}
-          eventSources={props.eventSources.filter(
-            source => selected.has(source.id) || selected.size === 0
-          )}
+          eventSources={visibleSources}
           nowIndicator={true}
           slotMinTime="08:00:00"
           slotMaxTime="22:00:00"
@@ -118,9 +126,7 @@ export default function Calendar(props: CalendarProps) {
         <FullCalendar
           plugins={[listPlugin, iCalendarPlugin]}
           initialView="listWeek"
-          eventSources={props.eventSources.filter(
-            source => selected.has(source.id) || selected.size === 0
-          )}
+          eventSources={visibleSources}
           contentHeight="auto"
           eventClassNames="motion-preset-focus"
         />
