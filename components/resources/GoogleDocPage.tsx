@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { connection } from 'next/server'
 
 interface Section {
   heading: string
@@ -216,6 +217,9 @@ export function renderListBlock(block: string, textRenderer: (text: string) => R
 
 export async function fetchGoogleDoc(docId: string): Promise<string> {
   const url = `https://docs.google.com/document/d/${docId}/export?format=txt`
+  // The doc is read fresh on every request, so opt the page out of prerendering here,
+  // outside the try: inside it, the catch would swallow Next's bail-out and log it as a failure.
+  await connection()
   try {
     const response = await fetch(url, {
       redirect: 'follow',
