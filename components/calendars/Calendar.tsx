@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -33,9 +33,16 @@ export default function Calendar(props: CalendarProps) {
     (source, index, sources) => sources.findIndex(other => other.id === source.id) === index
   )
   // FullCalendar wants each source's id to be its own, so the feed's URL stands in.
-  const visibleSources = props.eventSources
-    .filter(source => selected.has(source.id) || selected.size === 0)
-    .map(source => ({ ...source, id: source.url }))
+  // Memoized because FullCalendar refetches any source object it has not seen
+  // before, so fresh ones on every render would reload the events on each click.
+  const { eventSources } = props
+  const visibleSources = useMemo(
+    () =>
+      eventSources
+        .filter(source => selected.has(source.id) || selected.size === 0)
+        .map(source => ({ ...source, id: source.url })),
+    [eventSources, selected]
+  )
 
   return (
     <div className="motion-preset-blur-up w-full h-full flex flex-col lg:flex-row items-start justify-center gap-4 rounded-2xl px-8 pt-6">
