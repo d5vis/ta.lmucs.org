@@ -4,10 +4,6 @@ import {
   CLASS_GENERAL_URL,
   CORS_PROXY_BASE_URL,
   EVENTS_ICAL_URL,
-  TEACHING_1010_URL,
-  TEACHING_2000_URL,
-  TEACHING_3000_URL,
-  TEACHING_GRAD_URL,
 } from './constants'
 
 /**
@@ -51,31 +47,4 @@ export const TUTORING_EVENTS_SOURCES: CalendarEventSource[] = [
   { url: '/api/tutoring-shifts/1000', color: '#328A49', id: '1000' },
   { url: '/api/tutoring-shifts/2000', color: '#832B94', id: '2000' },
   { url: '/api/tutoring-shifts/3000', color: '#5476D0', id: '3000+' },
-]
-
-export const TEACHING_EVENTS_SOURCES: CalendarEventSource[] = [
-  {
-    url: CORS_PROXY_BASE_URL + encodeURIComponent(TEACHING_1010_URL),
-    format: 'ics',
-    color: '#328A49',
-    id: '1000',
-  },
-  {
-    url: CORS_PROXY_BASE_URL + encodeURIComponent(TEACHING_2000_URL),
-    format: 'ics',
-    color: '#832B94',
-    id: '2000',
-  },
-  {
-    url: CORS_PROXY_BASE_URL + encodeURIComponent(TEACHING_3000_URL),
-    format: 'ics',
-    color: '#5476D0',
-    id: '3000+',
-  },
-  {
-    url: CORS_PROXY_BASE_URL + encodeURIComponent(TEACHING_GRAD_URL),
-    format: 'ics',
-    color: '#F09300',
-    id: 'Graduate',
-  },
 ]
