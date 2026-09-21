@@ -1,4 +1,10 @@
-import { isShiftLevel, levelOf, toCalendarEvents, type SemesterShifts } from '../tutoringShifts'
+import {
+  isShiftLevel,
+  levelOf,
+  toCalendarEvents,
+  type RecurringEvent,
+  type SemesterShifts,
+} from '../tutoringShifts'
 
 const shift = (courses: string[], weekday = 1) => ({
   nid: `n${courses.join('')}${weekday}`,
@@ -75,7 +81,11 @@ describe('toCalendarEvents', () => {
       ],
     }
     expect(
-      toCalendarEvents([split], '1000').map(event => [event.id, event.startRecur, event.endRecur])
+      (toCalendarEvents([split], '1000') as RecurringEvent[]).map(event => [
+        event.id,
+        event.startRecur,
+        event.endRecur,
+      ])
     ).toEqual([
       ['before', '2026-08-31', '2026-09-08'],
       ['moved', '2026-09-15', '2026-09-16'],
@@ -95,3 +105,59 @@ describe('toCalendarEvents', () => {
     expect(events[0]).toMatchObject({ startRecur: '2026-08-31', endRecur: '2026-12-15' })
   })
 })
+
+describe('days that differ from the week', () => {
+  // Carter's Tuesdays, 3:30 to 5:30, from Sep 1 to Dec 15.
+  const carter = {
+    nid: 'carter01',
+    name: 'Carter G.',
+    courses: ['1010'],
+    weekday: 2,
+    start: '15:30',
+    end: '17:30',
+    startDate: '2026-09-01',
+    endDate: '2026-12-15',
+  }
+  const eventsFor = (extra: object) =>
+    toCalendarEvents([{ ...fall, shifts: [{ ...carter, ...extra }] }], '1000')
+
+  it('cuts a moved day out of the week and shows it at its own hours', () => {
+    const events = eventsFor({ changes: [{ date: '2026-09-22', start: '15:30', end: '18:00' }] })
+    expect(events).toEqual([
+      expect.objectContaining({ id: 'carter01', startRecur: '2026-09-01', endRecur: '2026-09-22' }),
+      {
+        id: 'carter01@2026-09-22',
+        title: 'Carter G. (1010)',
+        start: '2026-09-22T15:30',
+        end: '2026-09-22T18:00',
+        extendedProps: {
+          description:
+            'In-lab tutoring, Fall 2026. Hours changed for this day only (usually 3:30 PM - 5:30 PM).',
+        },
+      },
+      expect.objectContaining({ startRecur: '2026-09-23', endRecur: '2026-12-16' }),
+    ])
+  })
+
+  it('strikes through a cancelled day and titles a late one', () => {
+    const events = eventsFor({
+      statuses: [
+        { date: '2026-09-29', status: 'CANCELLED' },
+        { date: '2026-09-22', status: 'DELAYED' },
+      ],
+    })
+    const days = events.filter(event => 'start' in event)
+    expect(days.map(event => event.title)).toEqual([
+      'Running late: Carter G. (1010)',
+      'Cancelled: Carter G. (1010)',
+    ])
+    expect(days[1]).toMatchObject({ classNames: ['!line-through', 'opacity-60'] })
+    // The weeks around them still repeat: before, between and after.
+    expect(events.filter(event => 'startRecur' in event)).toHaveLength(3)
+  })
+
+  it('leaves a shift with nothing odd as one weekly event', () => {
+    expect(eventsFor({})).toHaveLength(1)
+  })
+})
+
