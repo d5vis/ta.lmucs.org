@@ -4,3 +4,6 @@ packages:
 allowBuilds:
   sharp: true
   unrs-resolver: true
+
+minimumReleaseAgeExclude:
+  - envstash-cli@0.6.0
